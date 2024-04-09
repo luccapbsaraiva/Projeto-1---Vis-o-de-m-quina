@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from Verifica_Cores import verifica
 
 boa1 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_01.png', 1)
 boa2 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_02.png', 1)
@@ -25,3 +26,4 @@ riscada2 = cv2.imread('Imagens_DESENVOLVIMENTO/riscada2.png',1)
 
 
 
+verifica(boa1)
