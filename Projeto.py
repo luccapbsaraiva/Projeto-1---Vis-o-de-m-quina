@@ -23,6 +23,5 @@ quebrada3 = cv2.imread('Imagens_DESENVOLVIMENTO/quebrada_03.png',1)
 riscada1 = cv2.imread('Imagens_DESENVOLVIMENTO/riscada1.png',1)
 riscada2 = cv2.imread('Imagens_DESENVOLVIMENTO/riscada2.png',1)
 
-plt.imshow(boa2)
-plt.show()
+
 
