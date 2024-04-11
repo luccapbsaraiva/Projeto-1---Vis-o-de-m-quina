@@ -26,4 +26,4 @@ riscada2 = cv2.imread('Imagens_DESENVOLVIMENTO/riscada2.png',1)
 
 
 
-print(verifica(boa1))
+#print(verifica(color1))
