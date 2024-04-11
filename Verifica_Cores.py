@@ -26,4 +26,4 @@ def verifica(img):
 
 
 
-print(verifica(boa1))
+#print(verifica(boa1))
