@@ -49,12 +49,17 @@ def quebrada(img):
 
     nova_vermelho=cv2.cvtColor(threshold_vermelho, cv2.COLOR_GRAY2RGB)
     bitwiseOr_vermelho = cv2.bitwise_and(nova_vermelho,img_ruim)
+    
+    plt.imshow(bitwiseOr_vermelho)
+    plt.show()
+
 
     if np.any(bitwiseOr_vermelho == 255) or percentage_red > 0.9:
         return "A pilula está quebrada"
     else:
         return "A pilula está integra" 
 
+    
 
 
 

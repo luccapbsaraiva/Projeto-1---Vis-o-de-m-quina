@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def verifica(img):
+def cores(img):
     
     imagem_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     
