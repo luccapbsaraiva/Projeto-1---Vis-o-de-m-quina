@@ -3,12 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def quebrada(img):
+def quebrada(img_molde,img):
 
-    img_molde = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_01.png', 1)
-    img_boa=cv2.cvtColor(img_molde, cv2.COLOR_BGR2RGB)
+    #img_molde = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_01.png', 1)
+    img_boa=img_molde
 
-    img_ruim=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img_ruim= img
 
     #########################################
     # Para a parte preta da pilula

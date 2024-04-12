@@ -89,7 +89,7 @@ def amassada(img_gray, img_rgb):
         M = cv2.moments(cnt)
         cX = int(M['m10']/M['m00'])
         cY = int(M["m01"]/M['m00'])
-        cv2.putText(img_copy, f"{i+1}", (cX-300,cY-100), cv2.FONT_HERSHEY_SIMPLEX, 5, (255,0,0), 8)
+        #cv2.putText(img_copy, f"{i+1}", (cX-300,cY-100), cv2.FONT_HERSHEY_SIMPLEX, 5, (255,0,0), 8)
         
         area = cv2.contourArea(cnt)
         if area>50000.0 and area<54000.0:

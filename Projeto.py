@@ -39,10 +39,10 @@ h,w,c=boa1.shape
 print("Normal ",h,w)
 print("Corte ",x,y)
 
-plt.imshow(contorno['img1'])
+plt.imshow(contorno['img2'])
 plt.show()
 
 
-#quebrada(contorno['img3'])
+print(quebrada(contorno['img1'],contorno['img3']))
 
 
