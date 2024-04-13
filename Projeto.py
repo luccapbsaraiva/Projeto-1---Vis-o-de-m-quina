@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from Verifica_Cores import cores
 from Verifica_quebrada import quebrada
 from verifica_amassada import amassada
+from verifica_dimesoes import dimensions
 
 boa1 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_01.png', 1)
 boa2 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_02.png', 1)
@@ -39,10 +40,12 @@ h,w,c=boa1.shape
 print("Normal ",h,w)
 print("Corte ",x,y)
 
-plt.imshow(contorno['img2'])
+plt.imshow(contorno['img10'])
 plt.show()
 
 
-print(quebrada(contorno['img1'],contorno['img3']))
+#print(quebrada(contorno['img1'],contorno['img3']))
+
+print(dimensions(contorno['img10'],contorno['img1']))
 
 
