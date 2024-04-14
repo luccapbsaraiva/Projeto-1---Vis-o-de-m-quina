@@ -79,6 +79,8 @@ def separa(img_gray, img_rgb):
     
     i = 0
     images_dict = {}  # Dicionário para armazenar as imagens dos contornos
+    imagem_base = img_rgb.copy()  # Cria uma cópia da imagem original fora do loop
+
     for cnt in filtra_contours:
         # Cria uma cópia da imagem original para desenhar cada contorno
         img_copy = img_rgb.copy()
@@ -87,7 +89,7 @@ def separa(img_gray, img_rgb):
         M = cv2.moments(cnt)
         cX = int(M['m10']/M['m00'])
         cY = int(M["m01"]/M['m00'])
-        #cv2.putText(img_copy, f"{i+1}", (cX-300,cY-100), cv2.FONT_HERSHEY_SIMPLEX, 5, (255,0,0), 8)
+        imagem_base=cv2.putText(imagem_base, f"{i+1}", (cX-300,cY-100), cv2.FONT_HERSHEY_SIMPLEX, 5, (255,0,0), 8)
         
         
         # Obtém a caixa delimitadora ao redor do contorno
@@ -105,7 +107,7 @@ def separa(img_gray, img_rgb):
         i +=1
     
     
-    return images_dict  # Retorna o dicionário com as imagens dos contornos
+    return images_dict,imagem_base  # Retorna o dicionário com as imagens dos contornos
 
 
 

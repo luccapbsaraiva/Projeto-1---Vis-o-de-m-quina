@@ -49,7 +49,7 @@ validacao3_rgb = cv2.cvtColor(validacao3, cv2.COLOR_BGR2RGB)
 
 
 
-pilulas_separdas = separa(teste_gray,teste_rgb)
+pilulas_separdas, imagem_numerada = separa(teste_gray,teste_rgb)
 
 pilulas_amassadas = {}
 pilulas_vermelhas={}
@@ -77,7 +77,7 @@ for j in pilulas_amassadas:
 
 
 for k in pilulas_vermelhas:
-    verifica_quebrada = quebrada(pilulas_vermelhas['img1'],pilulas_vermelhas[k])
+    verifica_quebrada = quebrada(pilulas_vermelhas['img7'],pilulas_vermelhas[k])
     if verifica_quebrada == 'A pilula está integra':
         #print('mantem')
         pilulas_quebradas[k]=pilulas_vermelhas[k]
@@ -89,22 +89,19 @@ for k in pilulas_vermelhas:
 
 
 for v in pilulas_quebradas:
-    verifica_dimensoes= dimensions(pilulas_quebradas['img1'],pilulas_quebradas[v])
+    verifica_dimensoes= dimensions(pilulas_quebradas['img7'],pilulas_quebradas[v])
     print("Pilula: ",v," Dimensão: ",verifica_dimensoes)
 
 
-for t in pilulas_quebradas:
-    pilulas_dimensoes=position(pilulas_quebradas[t])
 
-    
+fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  # Adiciona um subplot para imagem_numerada
 
+# Adiciona imagem_numerada ao primeiro subplot
+axs[0].imshow(imagem_numerada)
+axs[0].set_title("Imagem Numerada")
 
+for i, (nome, img) in enumerate(pilulas_quebradas.items()):
+    axs[i+1].imshow(img)  # Começa do segundo subplot
+    axs[i+1].set_title(nome)
 
-
-"""for i, img in enumerate(pilulas_vermelhas.values()):
-    plt.figure(i)
-    plt.imshow(img)
-    plt.title(f"Pílula {i+1}")
-
-plt.show()"""
-
+plt.show()
