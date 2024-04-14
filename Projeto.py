@@ -101,14 +101,31 @@ for nome, img in pilulas_quebradas.items():
         print(f"Pílula: {nome}  Dimensão: {img.shape}  Posição: {posicoes[nome]}")
 
 
-fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  # Adiciona um subplot para imagem_numerada
 
-# Adiciona imagem_numerada ao primeiro subplot
+import csv
+
+# Abra o arquivo CSV em modo de escrita
+with open("Resultado_Img_VALIDACAO.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    # Escreva o cabeçalho
+    writer.writerow(["Index", "Status", "Pos X", "Pos Y", "W", "H1", "H2"])
+
+    for nome, img in pilulas_quebradas.items():
+            status = "OK" 
+            pos_x, pos_y = posicoes[nome]
+            # Obtenha as dimensões da pílula
+            w, h1, h2 = verifica_dimensoes # Você deve substituir isso pelas dimensões reais
+            # Escreva os dados no arquivo CSV
+            writer.writerow([nome, status, pos_x, pos_y, w, h1, h2])
+
+    
+'''fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  
+
 axs[0].imshow(imagem_numerada)
 axs[0].set_title("Imagem Numerada")
 
 for i, (nome, img) in enumerate(pilulas_quebradas.items()):
-    axs[i+1].imshow(img)  # Começa do segundo subplot
+    axs[i+1].imshow(img)  
     axs[i+1].set_title(nome)
 
-plt.show()
+plt.show()'''
