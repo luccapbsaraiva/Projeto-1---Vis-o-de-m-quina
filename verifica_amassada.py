@@ -68,18 +68,16 @@ plt.show()'''
 
 import matplotlib.pyplot as plt
 
-def amassada(img_gray, img_rgb):
+def separa(img_gray, img_rgb):
     ret, thresh = cv2.threshold(img_gray, 120, 255, cv2.THRESH_BINARY)
     thresh = cv2.bitwise_not(thresh)
 
     contours, hierarchy = cv2.findContours(thresh,  cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    min_val = 120
+    min_val = 200
     filtra_contours = [contour for contour in contours if len(contour)> min_val]
     
     i = 0
-    area_real = []
-    pilula_index = []
     images_dict = {}  # Dicionário para armazenar as imagens dos contornos
     for cnt in filtra_contours:
         # Cria uma cópia da imagem original para desenhar cada contorno
@@ -91,10 +89,6 @@ def amassada(img_gray, img_rgb):
         cY = int(M["m01"]/M['m00'])
         #cv2.putText(img_copy, f"{i+1}", (cX-300,cY-100), cv2.FONT_HERSHEY_SIMPLEX, 5, (255,0,0), 8)
         
-        area = cv2.contourArea(cnt)
-        if area>50000.0 and area<54000.0:
-            area_real.append(area)
-            pilula_index.append(i+1)
         
         # Obtém a caixa delimitadora ao redor do contorno
         x, y, w, h = cv2.boundingRect(cnt)
@@ -110,11 +104,25 @@ def amassada(img_gray, img_rgb):
         images_dict[f'img{i+1}'] = cropped_img
         i +=1
     
-    print(area_real)
-    print('---------------------')
-    print(pilula_index)
     
     return images_dict  # Retorna o dicionário com as imagens dos contornos
 
 
 
+def amassada(img_rgb):
+    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2GRAY)
+    ret, thresh = cv2.threshold(img_gray, 120, 255, cv2.THRESH_BINARY)
+    thresh = cv2.bitwise_not(thresh)
+
+    contours, hierarchy = cv2.findContours(thresh,  cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    min_val = 120
+    filtra_contours = [contour for contour in contours if len(contour)> min_val]
+
+    for cnt in filtra_contours:
+        area = cv2.contourArea(cnt)
+        if area>50000.0 and area<54000.0:
+            print('ok')
+        else:
+            print('amassada')
+    

@@ -41,4 +41,36 @@ def dimensions(img, img_molde):
 ##################################
     # Retorna as dimensões nessa ordem
     return w, h1, h2
+
+
+
+
+#RECEBE A IMAGEM COM TODAS AS PILULAS E RETORNA DICIONÁRIO COM AS POSIÇÕES X E Y
+def position(img_rgb):
+    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2GRAY)
+    ret, thresh = cv2.threshold(img_gray, 120, 255, cv2.THRESH_BINARY)
+    thresh = cv2.bitwise_not(thresh)
+
+   
+    
+
+    contours, hierarchy = cv2.findContours(thresh,  cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    min_val = 200
+    filtra_contours = [contour for contour in contours if len(contour)> min_val]
+
+    i=0
+    pos_dict = {}
+    for cnt in filtra_contours:
+       
+
+        M = cv2.moments(cnt)
+        cX = int(M['m10']/M['m00'])
+        cY = int(M["m01"]/M['m00'])
+
+
+        pos_dict[f'img{i+1}'] = (cX, cY)
+        i +=1
+
+    return pos_dict
     
