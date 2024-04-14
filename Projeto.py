@@ -101,10 +101,10 @@ for t in pilulas_quebradas:
 
 
 
-for i, img in enumerate(pilulas_dimensoes.values()):
+"""for i, img in enumerate(pilulas_vermelhas.values()):
     plt.figure(i)
     plt.imshow(img)
     plt.title(f"Pílula {i+1}")
 
-plt.show()
+plt.show()"""
 
