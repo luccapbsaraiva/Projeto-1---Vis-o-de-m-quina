@@ -13,8 +13,8 @@ def quebrada(img_molde,img):
     #########################################
     # Para a parte preta da pilula
 
-    pilula_boa = cv2.cvtColor(img_molde, cv2.COLOR_BGR2GRAY)
-    pilula_amassada = cv2.cvtColor(img_ruim, cv2.COLOR_BGR2GRAY)
+    pilula_boa = cv2.cvtColor(img_molde, cv2.COLOR_RGB2GRAY)
+    pilula_amassada = cv2.cvtColor(img_ruim, cv2.COLOR_RGB2GRAY)
     threshold_preto = np.where(pilula_boa > 50, 255,0).astype('uint8')
 
     nova_preto=cv2.cvtColor(threshold_preto, cv2.COLOR_GRAY2RGB)
@@ -49,16 +49,12 @@ def quebrada(img_molde,img):
 
     nova_vermelho=cv2.cvtColor(threshold_vermelho, cv2.COLOR_GRAY2RGB)
     bitwiseOr_vermelho = cv2.bitwise_and(nova_vermelho,img_ruim)
-    
-    plt.imshow(bitwiseOr_vermelho)
-    plt.show()
 
 
-    if np.any(bitwiseOr_vermelho == 255) or percentage_red > 0.9:
+    if np.any(bitwiseOr_vermelho == 255) or percentage_red > 1.1:
         return "A pilula está quebrada"
     else:
-        return "A pilula está integra" 
-
+        return "A pilula está integra"
     
 
 

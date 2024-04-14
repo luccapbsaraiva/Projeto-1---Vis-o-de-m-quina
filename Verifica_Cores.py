@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def cores(img):
     
-    imagem_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    imagem_hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
     
     # Defina o intervalo de cores vermelhas no espaço de cores HSV
     lower_red = np.array([0, 50, 50])

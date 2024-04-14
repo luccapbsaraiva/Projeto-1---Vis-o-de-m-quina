@@ -122,7 +122,7 @@ def amassada(img_rgb):
     for cnt in filtra_contours:
         area = cv2.contourArea(cnt)
         if area>50000.0 and area<54000.0:
-            print('ok')
+            return 'ok'
         else:
-            print('amassada')
+            return 'amassada'
     

@@ -29,36 +29,82 @@ quebrada3 = cv2.imread('Imagens_DESENVOLVIMENTO/quebrada_03.png',1)
 riscada1 = cv2.imread('Imagens_DESENVOLVIMENTO/riscada1.png',1)
 riscada2 = cv2.imread('Imagens_DESENVOLVIMENTO/riscada2.png',1)
 
+
+
 teste = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_TESTE_0.png',1)
 teste_gray = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_TESTE_0.png',0)
 teste_rgb = cv2.cvtColor(teste, cv2.COLOR_BGR2RGB)
 
-contorno=separa(teste_gray,teste_rgb)
+validacao1 = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_1.png',1)
+validacao1_gray = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_1.png',0)
+validacao1_rgb = cv2.cvtColor(validacao1, cv2.COLOR_BGR2RGB)
+
+validacao2 = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_2.png',1)
+validacao2_gray = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_2.png',0)
+validacao2_rgb = cv2.cvtColor(validacao2, cv2.COLOR_BGR2RGB)
+
+validacao3 = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_3.png',1)
+validacao3_gray = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_3.png',0)
+validacao3_rgb = cv2.cvtColor(validacao3, cv2.COLOR_BGR2RGB)
 
 
-x,y,z=contorno['img1'].shape
 
-h,w,c=boa1.shape
-print("Normal ",h,w)
-print("Corte ",x,y)
+pilulas_separdas = separa(teste_gray,teste_rgb)
 
-plt.imshow(contorno['img9'])
+pilulas_amassadas = {}
+pilulas_vermelhas={}
+pilulas_quebradas={}
+pilulas_dimensoes={}
+
+for i in pilulas_separdas:
+    verifica_amassada = amassada(pilulas_separdas[i])
+    if verifica_amassada == 'ok':
+        #print('mantem')
+        pilulas_amassadas[i]=pilulas_separdas[i]
+    else:
+        pass
+
+
+
+for j in pilulas_amassadas:
+    verifica_cor = cores(pilulas_amassadas[j])
+    if verifica_cor == 'Vermelho':
+        #print('mantem')
+        pilulas_vermelhas[j]=pilulas_amassadas[j]
+    else:
+        #print("tira")
+        pass
+
+
+for k in pilulas_vermelhas:
+    verifica_quebrada = quebrada(pilulas_vermelhas['img1'],pilulas_vermelhas[k])
+    if verifica_quebrada == 'A pilula está integra':
+        #print('mantem')
+        pilulas_quebradas[k]=pilulas_vermelhas[k]
+        #print(k)
+    else:
+        #print("tira")
+        #print(k)
+        pass
+
+
+for v in pilulas_quebradas:
+    verifica_dimensoes= dimensions(pilulas_quebradas['img1'],pilulas_quebradas[v])
+    print("Pilula: ",v," Dimensão: ",verifica_dimensoes)
+
+
+for t in pilulas_quebradas:
+    pilulas_dimensoes=position(pilulas_quebradas[t])
+
+    
+
+
+
+
+for i, img in enumerate(pilulas_dimensoes.values()):
+    plt.figure(i)
+    plt.imshow(img)
+    plt.title(f"Pílula {i+1}")
+
 plt.show()
-
-
-#print(quebrada(contorno['img1'],contorno['img3']))
-
-amassada(contorno['img9'])
-
-
-boa1_rgb = cv2.cvtColor(boa1, cv2.COLOR_BGR2RGB)
-print(dimensions(contorno['img3'],boa1_rgb))
-
-
-teste2_rgb = cv2.cvtColor(cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_TESTE_0.png', 1), cv2.COLOR_BGR2RGB)
-
-print(position(teste2_rgb)['img{0}'.format(1)])
-
-
-
 
