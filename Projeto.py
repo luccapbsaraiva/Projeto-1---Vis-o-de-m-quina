@@ -39,10 +39,15 @@ h,w,c=boa1.shape
 print("Normal ",h,w)
 print("Corte ",x,y)
 
-plt.imshow(contorno['img2'])
-plt.show()
+imagens=contorno['img5']
 
+#plt.imshow(imagens)
+#plt.show()
 
-print(quebrada(contorno['img1'],contorno['img3']))
+for i in contorno:
+    plt.imshow(contorno[i])
+    quebrada(contorno['img1'],contorno[i])
+    plt.show()
+
 
 
