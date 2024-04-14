@@ -94,6 +94,13 @@ for v in pilulas_quebradas:
 
 
 
+posicoes=position(teste_rgb)
+
+for nome, img in pilulas_quebradas.items():
+    if nome in posicoes:
+        print(f"Pílula: {nome}  Dimensão: {img.shape}  Posição: {posicoes[nome]}")
+
+
 fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  # Adiciona um subplot para imagem_numerada
 
 # Adiciona imagem_numerada ao primeiro subplot
