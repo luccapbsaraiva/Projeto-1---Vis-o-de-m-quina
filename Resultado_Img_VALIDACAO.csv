@@ -1,6 +1,11 @@
-Index,Status,Pos X,Pos Y,W,H1,H2
+Status,Pos X,Pos Y,W,H1,H2
 img1,OK,1527,4470,424,139,131
+img2,Quebrada,0,0,0,0,0
+img3,Não Vermelho,0,0,0,0,0
+img4,Quebrada,0,0,0,0,0
 img5,OK,1976,2952,424,139,131
+img6,Amassada,0,0,0,0,0
 img7,OK,1991,2119,424,139,131
 img8,OK,1502,1446,424,139,131
+img9,Amassada,0,0,0,0,0
 img10,OK,1864,568,424,139,131

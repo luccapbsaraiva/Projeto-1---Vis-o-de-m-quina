@@ -7,6 +7,7 @@ from verifica_amassada import separa
 from verifica_amassada import amassada
 from verifica_dimesoes import dimensions
 from verifica_dimesoes import position
+import pandas as pd
 
 boa1 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_01.png', 1)
 boa2 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_02.png', 1)
@@ -48,7 +49,6 @@ validacao3_gray = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_3.png',0)
 validacao3_rgb = cv2.cvtColor(validacao3, cv2.COLOR_BGR2RGB)
 
 
-
 pilulas_separdas, imagem_numerada = separa(teste_gray,teste_rgb)
 
 pilulas_amassadas = {}
@@ -61,7 +61,9 @@ for i in pilulas_separdas:
     if verifica_amassada == 'ok':
         #print('mantem')
         pilulas_amassadas[i]=pilulas_separdas[i]
+        
     else:
+        #print('tira')
         pass
 
 
@@ -108,17 +110,37 @@ import csv
 with open("Resultado_Img_VALIDACAO.csv", "w", newline="") as f:
     writer = csv.writer(f)
     # Escreva o cabeçalho
-    writer.writerow(["Index", "Status", "Pos X", "Pos Y", "W", "H1", "H2"])
+    writer.writerow(["Status", "Pos X", "Pos Y", "W", "H1", "H2"])
 
-    for nome, img in pilulas_quebradas.items():
-            status = "OK" 
-            pos_x, pos_y = posicoes[nome]
-            # Obtenha as dimensões da pílula
-            w, h1, h2 = verifica_dimensoes # Você deve substituir isso pelas dimensões reais
-            # Escreva os dados no arquivo CSV
-            writer.writerow([nome, status, pos_x, pos_y, w, h1, h2])
 
-    
+    for nome, img in pilulas_separdas.items():
+        
+        status = "OK"  # Defina um status padrão
+        pos_x, pos_y = posicoes[nome]
+        w, h1, h2 = verifica_dimensoes 
+        
+        if nome not in pilulas_amassadas:
+            status = "Amassada"
+            pos_x, pos_y = 0,0
+            w, h1, h2 = 0,0,0      
+
+        elif nome not in pilulas_vermelhas:
+            
+            status = "Não Vermelho"
+            pos_x, pos_y = 0,0
+            w, h1, h2 = 0,0,0 
+
+        elif nome not in pilulas_quebradas:
+            
+            status = "Quebrada"
+            pos_x, pos_y = 0,0
+            w, h1, h2 = 0,0,0
+        
+        # Escreva os dados no arquivo CSV
+        writer.writerow([nome, status, pos_x, pos_y, w, h1, h2])
+
+
+
 '''fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  
 
 axs[0].imshow(imagem_numerada)
