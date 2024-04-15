@@ -1,13 +1,15 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import csv
+import pandas as pd
 from Verifica_Cores import cores
 from Verifica_quebrada import quebrada
 from verifica_amassada import separa
 from verifica_amassada import amassada
 from verifica_dimesoes import dimensions
 from verifica_dimesoes import position
-import pandas as pd
+
 
 boa1 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_01.png', 1)
 boa2 = cv2.imread('Imagens_DESENVOLVIMENTO/_boa_02.png', 1)
@@ -49,7 +51,18 @@ validacao3_gray = cv2.imread('Imagens_TESTE_VALIDACAO/Imagem_VALIDACAO_3.png',0)
 validacao3_rgb = cv2.cvtColor(validacao3, cv2.COLOR_BGR2RGB)
 
 
+
+#Para as validações: alterar os argumentos da função separa() abaixo e rodar o código
+#Ela deve receber os argumentos: imagem de validação em grayscale e imagem de validação em rgb
+#Todas as imagens de validação necessárias foram definidas acima tanto em grayscale como rgb
+#O resultado será o arquivo em csv atualizado, uma figure com a imagem das pílulas numeradas de baixo para cima e
+#imagens de todas as pílulas OK detectadas
 pilulas_separdas, imagem_numerada = separa(teste_gray,teste_rgb)
+
+
+
+
+
 
 pilulas_amassadas = {}
 pilulas_vermelhas={}
@@ -104,7 +117,7 @@ for nome, img in pilulas_quebradas.items():
 
 
 
-import csv
+
 
 # Abra o arquivo CSV em modo de escrita
 with open("Resultado_Img_VALIDACAO.csv", "w", newline="") as f:
