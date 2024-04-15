@@ -141,7 +141,7 @@ with open("Resultado_Img_VALIDACAO.csv", "w", newline="") as f:
 
 
 
-'''fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  
+fig, axs = plt.subplots(nrows=1, ncols=len(pilulas_quebradas) + 1, figsize=(15, 15))  
 
 axs[0].imshow(imagem_numerada)
 axs[0].set_title("Imagem Numerada")
@@ -150,4 +150,4 @@ for i, (nome, img) in enumerate(pilulas_quebradas.items()):
     axs[i+1].imshow(img)  
     axs[i+1].set_title(nome)
 
-plt.show()'''
+plt.show()
